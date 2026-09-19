@@ -1,0 +1,134 @@
+Data dir: data\hcmut
+Chunker: FixedSizeChunker
+Embedding backend: text-embedding-3-small + cache
+Loaded chunks: 110
+
+Query 1: Sinh viên đăng ký môn học Đợt 1 ở đâu và cần lưu ý giới hạn tín chỉ nào?
+Filter: {'audience': 'student'}
+Gold: Sinh viên đăng ký tại MyBK > Đăng ký môn học; Đợt 1 đăng ký tối đa 25 tín chỉ, còn HV/NCS tối đa 20 tín chỉ.
+Expected doc_id: course-registration-process
+Required phrases: ['Đăng ký tại MyBK', 'tối đa 25 tín chỉ']
+  1. score=0.6324 doc_id=course-registration-process chunk=1 title=Quy trình đăng ký môn học
+     ầu học...". SV xem Loại hình lớp và đối tượng sinh viên để chọn loại đăng ký đúng: Quy định về học vụ và đào tạo bậc đại học – Phiên bản hợp nhất/ Phụ lục 13. Quy định về các loại ...
+  2. score=0.6151 doc_id=course-registration-rules chunk=0 title=Đăng ký môn học - Quy định - Hướng dẫn chung
+     # Đăng ký môn học - Quy định - Hướng dẫn chung Đăng ký môn học - Quy định - Hướng dẫn chung Trung tâm hỗ trợ Đăng ký môn học - Quy định - Hướng dẫn chung Đăng ký môn học - Quy định...
+  3. score=0.6113 doc_id=course-registration-process chunk=2 title=Quy trình đăng ký môn học
+     ý môn học Đợt 1 có thể sẽ gặp khó khăn vào các đợt sau (Đợt đăng ký hiệu chỉnh - Đợt 2 và Đợt ĐKMH bổ sung - Đợt 3) do lớp không mở hoặc lớp đã đủ sĩ số. Trường hợp SV đã hoàn thàn...
+Doc-level hit top-3: True
+Content-level required phrases found: False
+Score: 0/2
+
+Query 2: Nếu sinh viên không đăng ký môn học và không có thời khóa biểu trong học kỳ thì có thể bị xử lý thế nào?
+Filter: {'audience': 'student'}
+Gold: Sinh viên không đăng ký môn học, không có thời khóa biểu trong học kỳ, sẽ bị xử lý ra quyết định xóa tên vì không có thời khóa biểu.
+Expected doc_id: course-registration-rules
+Required phrases: ['Xóa tên vì không có thời khóa biểu']
+  1. score=0.6381 doc_id=course-registration-rules chunk=2 title=Đăng ký môn học - Quy định - Hướng dẫn chung
+     đăng ký vài học phần để giữ tình trạng của SV, nếu đủ điều kiện tốt nghiệp SV đăng ký Rút môn học theo quy trình và phải thanh toán học phí theo quy định. - Tất cả các thông báo về...
+  2. score=0.6290 doc_id=course-registration-rules chunk=3 title=Đăng ký môn học - Quy định - Hướng dẫn chung
+     thời khóa biểu trong học kỳ) sẽ bị xử lý ra quyết định "Xóa tên vì không có thời khóa biểu" (Lưu ý: Theo quy định, từ Khóa 2021 trở về sau, SV bị buộc thôi học chỉ có thể được xem ...
+  3. score=0.6226 doc_id=course-registration-rules chunk=16 title=Đăng ký môn học - Quy định - Hướng dẫn chung
+     hông tin nộp tại MyBK >> BKSI. Tình trạng "Buộc thôi học/xóa tên vì không đăng ký môn học..." SV liên hệ Giáo viên chủ nhiệm/Văn Phòng Khoa để được hỗ trợ thu nhận lại theo quy địn...
+Doc-level hit top-3: True
+Content-level required phrases found: True
+Score: 2/2
+
+Query 3: Học phí HK1 và HK2 phải thanh toán vào thời điểm nào?
+Filter: {'topic': 'tuition'}
+Gold: Học phí HK1 và HK2 thanh toán 100% học phí, kết thúc ở tuần 4 của học kỳ, với thời gian thanh toán trong 1 tuần.
+Expected doc_id: tuition-payment
+Required phrases: ['Kết thúc ở tuần 4', '100% học phí']
+  1. score=0.6726 doc_id=tuition-payment chunk=0 title=Học phí
+     # Học phí Học phí Trung tâm hỗ trợ Học phí Học phí 1. Thanh toán học phí - Xem hướng dẫn tại đây Lưu ý: Tại Mybk >> Cổng thanh toán BKPay không thanh toán được, chỉ thể hiện đường ...
+  2. score=0.6554 doc_id=tuition-payment chunk=1 title=Học phí
+     c phí - Học phí HK1 và HK2 thanh toán: 100% học phí: Kết thúc ở tuần 4 của học kỳ (thời gian thanh toán trong 1 tuần). Tuần học được tính theo biểu đồ năm học. - Học phí các HK dự ...
+  3. score=0.5113 doc_id=tuition-payment chunk=2 title=Học phí
+     i gặp khó khăn, SV chính quy (trừ SV Vừa làm vừa học & bằng 2), thể xin vay/miễn/giảm/hoãn nộp học phí của HK chính bằng các nộp đơn tại P. Công tác Sinh viên (101A5 Cơ sở 1 hoặc K...
+Doc-level hit top-3: True
+Content-level required phrases found: True
+Score: 2/2
+
+Query 4: Những môn nào không được phúc tra bài thi cuối kỳ?
+Filter: {'topic': 'grade_appeal'}
+Gold: Các môn không được phúc tra gồm môn thi trắc nghiệm, môn thí nghiệm, môn thực hành, thực tập, đồ án, đề cương luận văn và luận văn tốt nghiệp.
+Expected doc_id: final-exam-grade-review
+Required phrases: ['môn thi trắc nghiệm', 'môn thí nghiệm', 'luận văn tốt nghiệp']
+  1. score=0.6598 doc_id=final-exam-grade-review chunk=0 title=Phúc tra bài thi cuối kỳ
+     # Phúc tra bài thi cuối kỳ Phúc tra bài thi cuối kỳ Trung tâm hỗ trợ Phúc tra bài thi cuối kỳ Phúc tra bài thi cuối kỳ 1- Quy trình: - PHÒNG KHẢO THÍ VÀ BẢO ĐẢM CHẤT LƯỢNG (P.KT&BĐ...
+  2. score=0.5755 doc_id=final-exam-grade-review chunk=1 title=Phúc tra bài thi cuối kỳ
+     Lưu ý: Thời hạn phúc tra là 30 ngày tính từ ngày Giảng viên chuyển bảng điểm chính thức lên Phòng đào tạo. Mỗi môn học chỉ được phúc tra bài thi cuối kỳ một lần, không giới hạn số ...
+  3. score=0.5060 doc_id=final-exam-grade-review chunk=4 title=Phúc tra bài thi cuối kỳ
+     ãn thi Giữa kỳ và Cuối kỳ Đào tạo song ngành Kéo dài thời gian đào tạo Đăng ký Thông tin văn bằng Tags phúc tra phúc khảo Không tìm thấy câu trả lời? Liên hệ bộ phận của chúng tôi ...
+Doc-level hit top-3: True
+Content-level required phrases found: True
+Score: 2/2
+
+Query 5: Đăng ký giấy chứng nhận sinh viên thực hiện trên hệ thống nào và nhận ở đâu?
+Filter: {'audience': 'student'}
+Gold: Sinh viên đăng ký tại MyBK > Ứng dụng cho Sinh viên > Đăng ký in Giấy xác nhận sinh viên; khi trạng thái chuyển Đã in thì đến Phòng Công tác sinh viên để nhận.
+Expected doc_id: student-certificate
+Required phrases: ['Đăng ký in Giấy xác nhận sinh viên', 'Phòng Công tác sinh viên']
+  1. score=0.6576 doc_id=student-certificate chunk=1 title=Cấp giấy chứng nhận sinh viên
+     kiện : SV hệ chính quy và trong thời gian đào tạo chuẩn theo quy định. SV hệ Vừa làm vừa học phải có thời khóa biểu chính thức vào các học kỳ chính (HK1, HK2) và có số tín chỉ tối ...
+  2. score=0.6479 doc_id=student-certificate chunk=0 title=Cấp giấy chứng nhận sinh viên
+     # Cấp giấy chứng nhận sinh viên Cấp giấy chứng nhận sinh viên Trung tâm hỗ trợ Cấp giấy chứng nhận sinh viên Cấp giấy chứng nhận sinh viên SV chính quy phải có thời khóa biểu chính...
+  3. score=0.6395 doc_id=student-certificate chunk=3 title=Cấp giấy chứng nhận sinh viên
+     sinh viên Ngoại ngữ Bảng tổng hợp quy định các chuẩn Đánh giá kết quả học tập Quy chế - Quy định Học phí Rút môn học Hoãn thi Giữa kỳ và Cuối kỳ Đào tạo song ngành Kéo dài thời gia...
+Doc-level hit top-3: True
+Content-level required phrases found: True
+Score: 2/2
+
+FixedSize strategy total score: 8/10
+
+=== Strategy comparison summary ===
+=== Strategy: fixed_size ===
+Loaded chunks: 110
+Q1: doc_hit=True phrase_hit=False score=0/2
+Q2: doc_hit=True phrase_hit=True score=2/2
+Q3: doc_hit=True phrase_hit=True score=2/2
+Q4: doc_hit=True phrase_hit=True score=2/2
+Q5: doc_hit=True phrase_hit=True score=2/2
+Total: 8/10
+
+=== Strategy: by_sentences ===
+Loaded chunks: 76
+Q1: doc_hit=True phrase_hit=True score=2/2
+Q2: doc_hit=True phrase_hit=True score=2/2
+Q3: doc_hit=True phrase_hit=True score=2/2
+Q4: doc_hit=True phrase_hit=True score=2/2
+Q5: doc_hit=True phrase_hit=True score=2/2
+Total: 10/10
+
+=== Strategy: recursive ===
+Loaded chunks: 114
+Q1: doc_hit=True phrase_hit=False score=0/2
+Q2: doc_hit=True phrase_hit=True score=2/2
+Q3: doc_hit=True phrase_hit=True score=2/2
+Q4: doc_hit=True phrase_hit=True score=2/2
+Q5: doc_hit=True phrase_hit=True score=2/2
+Total: 8/10
+
+=== Strategy: heading ===
+Loaded chunks: 97
+Q1: doc_hit=True phrase_hit=True score=2/2
+Q2: doc_hit=True phrase_hit=True score=2/2
+Q3: doc_hit=True phrase_hit=True score=2/2
+Q4: doc_hit=True phrase_hit=True score=2/2
+Q5: doc_hit=True phrase_hit=True score=2/2
+Total: 10/10
+
+=== A/B metadata filter for Query 5 ===
+Query: Đăng ký giấy chứng nhận sinh viên thực hiện trên hệ thống nào và nhận ở đâu?
+Strategy: fixed_size
+  No filter: ['student-certificate', 'student-service-offices', 'student-certificate']
+  Filtered : ['student-certificate', 'student-certificate', 'student-certificate']
+Strategy: by_sentences
+  No filter: ['student-certificate', 'freshman-admission-dormitory', 'freshman-admission-dormitory']
+  Filtered : ['student-certificate', 'freshman-admission-dormitory', 'freshman-admission-dormitory']
+Strategy: recursive
+  No filter: ['student-certificate', 'student-service-offices', 'student-certificate']
+  Filtered : ['student-certificate', 'student-certificate', 'student-certificate']
+Strategy: heading
+  No filter: ['student-certificate', 'student-certificate', 'student-service-offices']
+  Filtered : ['student-certificate', 'student-certificate', 'student-certificate']
+
