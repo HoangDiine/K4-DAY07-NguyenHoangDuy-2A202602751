@@ -69,14 +69,15 @@ class GeminiEmbedder:
     a Gemini API key (aistudio.google.com) has a free quota, no billing card needed.
     """
 
-    def __init__(self, model_name: str = GEMINI_EMBEDDING_MODEL) -> None:
+    def __init__(self, model_name: str | None = None) -> None:
         from google import genai
 
         api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
         if not api_key:
             raise RuntimeError("GEMINI_API_KEY (or GOOGLE_API_KEY) is required for GeminiEmbedder")
-        self.model_name = model_name
-        self._backend_name = model_name
+        model = model_name or os.getenv("GEMINI_EMBEDDING_MODEL", GEMINI_EMBEDDING_MODEL)
+        self.model_name = model
+        self._backend_name = model
         self.client = genai.Client(api_key=api_key)
 
     def __call__(self, text: str) -> list[float]:
